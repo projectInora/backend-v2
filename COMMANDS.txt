@@ -1,0 +1,12 @@
+php bin/console constantable:make-document
+php bin/console constantable:make-document --embedded
+
+#league oauth2
+composer require league/oauth2-server-bundle
+
+openssl genrsa -aes128 -passout pass:2899a2e5234a4379a00bc6c7516441fa -out private.key 2048
+openssl rsa -in private.key -pubout -out public.key
+openssl rsa -in private.key -text > private.pem
+
+
+
