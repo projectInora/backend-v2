@@ -4,7 +4,7 @@ namespace App\Entity\CMS\Promo;
 
 use App\Entity\Base\BaseFullRecord;
 use App\Entity\CMS\Base\ButtonContent;
-use App\Entity\Meta\Image;
+use App\Entity\Image\Images;
 use App\Repository\CMS\Promo\PromoBarContentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,10 +25,10 @@ class PromoBarContent extends BaseFullRecord
     private ?int $displayOrder = null;
 
     #[ORM\ManyToOne]
-    private ?Image $defaultBanner = null;
+    private ?Images $defaultBanner = null;
 
     #[ORM\ManyToOne]
-    private ?Image $defaultMobBanner = null;
+    private ?Images $defaultMobBanner = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -91,24 +91,24 @@ class PromoBarContent extends BaseFullRecord
         return $this;
     }
 
-    public function getDefaultBanner(): ?Image
+    public function getDefaultBanner(): ?Images
     {
         return $this->defaultBanner;
     }
 
-    public function setDefaultBanner(?Image $defaultBanner): static
+    public function setDefaultBanner(?Images $defaultBanner): static
     {
         $this->defaultBanner = $defaultBanner;
 
         return $this;
     }
 
-    public function getDefaultMobBanner(): ?Image
+    public function getDefaultMobBanner(): ?Images
     {
         return $this->defaultMobBanner;
     }
 
-    public function setDefaultMobBanner(?Image $defaultMobBanner): static
+    public function setDefaultMobBanner(?Images $defaultMobBanner): static
     {
         $this->defaultMobBanner = $defaultMobBanner;
 

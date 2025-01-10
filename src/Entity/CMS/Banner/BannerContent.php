@@ -3,7 +3,7 @@
 namespace App\Entity\CMS\Banner;
 
 use App\Entity\Base\BaseFullRecord;
-use App\Entity\Meta\Image;
+use App\Entity\Image\Images;
 use App\Repository\CMS\Banner\BannerContentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,10 +18,10 @@ class BannerContent extends BaseFullRecord
 
     #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Image $webImage = null;
+    private ?Images $webImage = null;
 
     #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
-    private ?Image $mobileImage = null;
+    private ?Images $mobileImage = null;
 
     #[ORM\Column(length: 100)]
     private ?string $alt = null;
@@ -54,19 +54,19 @@ class BannerContent extends BaseFullRecord
         return $this->id;
     }
 
-    public function getWebImage(): ?Image
+    public function getWebImage(): ?Images
     {
         return $this->webImage;
     }
 
-    public function setWebImage(Image $webImage): static
+    public function setWebImage(Images $webImage): static
     {
         $this->webImage = $webImage;
 
         return $this;
     }
 
-    public function getMobileImage(): ?Image
+    public function getMobileImage(): ?Images
     {
         return $this->mobileImage;
     }

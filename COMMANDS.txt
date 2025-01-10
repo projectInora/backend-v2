@@ -9,4 +9,7 @@ openssl rsa -in private.key -pubout -out public.key
 openssl rsa -in private.key -text > private.pem
 
 
+php bin/console league:oauth2-server:create-client web_admin_api --grant-type=client_credentials --scope=webadminapi
+
+
 

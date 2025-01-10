@@ -23,6 +23,18 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
 
+        dql:
+            datetime_functions:
+                DATE_FORMAT: App\DQL\DateFormatFunction
+                TimestampDiff: DoctrineExtensions\Query\Mysql\TimestampDiff
+                MONTH: DoctrineExtensions\Query\Mysql\Month
+                YEAR: DoctrineExtensions\Query\Mysql\Year
+                DATE: DoctrineExtensions\Query\Mysql\Date
+            string_functions:
+                MATCH_AGAINST: App\DQL\MatchAgainst
+                GROUP_CONCAT: App\DQL\GroupConcat
+                IFNULL: App\DQL\IfNull
+
 when@test:
     doctrine:
         dbal:

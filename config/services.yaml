@@ -6,6 +6,7 @@
 parameters:
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
+    cnt.uploads.cms.banner.images: '__cnt/__uploads_/cms/images_/'
 
 services:
     # default configuration for services in *this* file

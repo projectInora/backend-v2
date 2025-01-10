@@ -10,7 +10,8 @@ security:
         ROLE_CATCHING_CENTER_USER: [ROLE_SELLER]
         ROLE_CATCHING_CENTER_ADMIN: [ROLE_CATCHING_CENTER_USER]
         ROLE_PROCESSING_CENTER_ADMIN: [ROLE_BUYER]
-        ROLE_SYSTEM_ADMIN: [ROLE_PROCESSING_CENTER_ADMIN,ROLE_CATCHING_CENTER_ADMIN,ROLE_BOAT_OWNER]
+        ROLE_WEB_ADMIN: [ROLE_PROCESSING_CENTER_ADMIN,ROLE_CATCHING_CENTER_ADMIN,ROLE_BOAT_OWNER]
+        ROLE_SYSTEM_ADMIN: [ROLE_WEB_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_SYSTEM_ADMIN]
 
     providers:
@@ -30,15 +31,17 @@ security:
 
         web_admin_api:
             pattern: ^/internal-api/v1/web-admin
-            security: false
+            security: true
             stateless: true
+            oauth2: true
+            provider: app_user_provider
 
         main:
             lazy: true
             provider: app_user_provider
 
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/internal-api/v1/web-admin, roles: [ROLE_WEB_ADMIN] }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

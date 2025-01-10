@@ -3,7 +3,7 @@
 namespace App\Entity\CMS\Promo;
 
 use App\Entity\Base\BaseFullRecord;
-use App\Entity\Meta\Image;
+use App\Entity\Image\Images;
 use App\Repository\CMS\Promo\PromoBarContentImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,10 +22,10 @@ class PromoBarContentImage extends BaseFullRecord
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Image $image = null;
+    private ?Images $image = null;
 
     #[ORM\ManyToOne]
-    private ?Image $mobileImage = null;
+    private ?Images $mobileImage = null;
 
     #[ORM\Column]
     private ?int $displayOrder = null;
@@ -64,24 +64,24 @@ class PromoBarContentImage extends BaseFullRecord
         return $this;
     }
 
-    public function getImage(): ?Image
+    public function getImage(): ?Images
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): static
+    public function setImage(?Images $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getMobileImage(): ?Image
+    public function getMobileImage(): ?Images
     {
         return $this->mobileImage;
     }
 
-    public function setMobileImage(?Image $mobileImage): static
+    public function setMobileImage(?Images $mobileImage): static
     {
         $this->mobileImage = $mobileImage;
 
