@@ -22,5 +22,22 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\EventListener\OAuth2UserResolveListener:
+        arguments:
+            - '@security.user_providers'
+            - '@security.password_hasher'
+        tags:
+            - { name: kernel.event_listener, event: league.oauth2_server.event.user_resolve, method: onUserResolve }
+
+    App\EventListener\OAuth2ScopeResolveListener:
+        tags:
+            - { name: kernel.event_listener, event: league.oauth2_server.event.scope_resolve, method: onScopeResolve }
+
+    App\Repository\Authentication\AuthUserTokenAccessRepository:
+        tags:
+            - { name: 'league.oauth2_server.repository.access_token' }
+
+    App\EventListener\OAuth2TokenIssueListener:
+        tags:
+            - { name: kernel.event_listener, event: access_token.issued, method: onAccessTokenIssuedEvent }
+

@@ -4,9 +4,13 @@ security:
 
     role_hierarchy:
         ROLE_USER: [ROLE_USER]
-        ROLE_SELLER: [ROLE_USER]
-        ROLE_ADMIN: [ROLE_SELLER,ROLE_CLIENT_WEB]
-        ROLE_SYSTEM_ADMIN: [ROLE_ADMIN]
+        ROLE_BOAT_OWNER: [ROLE_USER]
+        ROLE_BUYER: [ROLE_USER]
+        ROLE_SELLER: [ROLE_BUYER]
+        ROLE_CATCHING_CENTER_USER: [ROLE_SELLER]
+        ROLE_CATCHING_CENTER_ADMIN: [ROLE_CATCHING_CENTER_USER]
+        ROLE_PROCESSING_CENTER_ADMIN: [ROLE_BUYER]
+        ROLE_SYSTEM_ADMIN: [ROLE_PROCESSING_CENTER_ADMIN,ROLE_CATCHING_CENTER_ADMIN,ROLE_BOAT_OWNER]
         ROLE_SUPER_ADMIN: [ROLE_SYSTEM_ADMIN]
 
     providers:
@@ -23,6 +27,11 @@ security:
         api_token:
             pattern: ^/token$
             security: false
+
+        web_admin_api:
+            pattern: ^/internal-api/v1/web-admin
+            security: false
+            stateless: true
 
         main:
             lazy: true

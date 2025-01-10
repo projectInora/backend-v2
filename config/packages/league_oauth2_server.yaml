@@ -8,10 +8,12 @@ league_oauth2_server:
     resource_server:
         public_key: '%env(resolve:OAUTH_PUBLIC_KEY)%'
     scopes:
-        available: ['email']
-        default: ['email']
+        available: ['webadminapi']
+        default: ['webadminapi']
     persistence:
-        doctrine: null
+        doctrine:
+            entity_manager: default
+            table_prefix: oauth2_
     role_prefix: ROLE_OAUTH2_
 
 when@test:

@@ -6,11 +6,15 @@ use App\Entity\Base\BaseFullRecord;
 use App\Entity\Image\Images;
 use App\Entity\User\UserOTPRequest;
 use App\Repository\Authentication\AuthUserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: AuthUserRepository::class)]
-class AuthUser extends BaseFullRecord
+class AuthUser extends BaseFullRecord implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -56,10 +60,17 @@ class AuthUser extends BaseFullRecord
     #[ORM\ManyToOne]
     private ?UserOTPRequest $activeOTPRequest = null;
 
+    /**
+     * @var Collection<int, AuthUserAuthRoles>
+     */
+    #[ORM\OneToMany(targetEntity: AuthUserAuthRoles::class, mappedBy: 'authUser')]
+    private Collection $authUserAuthRoles;
+
     public function __construct()
     {
         $this->uuid = strtoupper(uniqid("US_"));
         parent::__construct();
+        $this->authUserAuthRoles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -219,6 +230,64 @@ class AuthUser extends BaseFullRecord
     public function setActiveOTPRequest(?UserOTPRequest $activeOTPRequest): static
     {
         $this->activeOTPRequest = $activeOTPRequest;
+
+        return $this;
+    }
+
+    public function getRoles(): array
+    {
+        $ret = [];
+        $role = $this->getAuthDefaultRole();
+        if($role != null){
+            $ret[] = $role->getCode();
+        }
+
+//        $authRoles = $this->getAuthUserAuthRoles();
+//        foreach($authRoles as $authRole){
+//            if($authRole->isAccessAllowed() && $authRole->isIsActive()){
+//                $ret[] = $authRole->getAuthRole()->getCode();
+//            }
+//        }
+
+        return $ret;
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->username;
+    }
+
+    /**
+     * @return Collection<int, AuthUserAuthRoles>
+     */
+    public function getAuthUserAuthRoles(): Collection
+    {
+        return $this->authUserAuthRoles;
+    }
+
+    public function addAuthUserAuthRole(AuthUserAuthRoles $authUserAuthRole): static
+    {
+        if (!$this->authUserAuthRoles->contains($authUserAuthRole)) {
+            $this->authUserAuthRoles->add($authUserAuthRole);
+            $authUserAuthRole->setAuthUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuthUserAuthRole(AuthUserAuthRoles $authUserAuthRole): static
+    {
+        if ($this->authUserAuthRoles->removeElement($authUserAuthRole)) {
+            // set the owning side to null (unless already changed)
+            if ($authUserAuthRole->getAuthUser() === $this) {
+                $authUserAuthRole->setAuthUser(null);
+            }
+        }
 
         return $this;
     }
