@@ -3,7 +3,10 @@
 namespace App\Entity\Image;
 
 use App\Entity\Base\BaseFullRecord;
+use App\Entity\Product\ProductCategoryImages;
 use App\Repository\Image\ImagesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,10 +42,17 @@ class Images extends BaseFullRecord
     #[ORM\Column(type: Types::GUID)]
     private ?string $uuid = null;
 
+    /**
+     * @var Collection<int, ProductCategoryImages>
+     */
+    #[ORM\OneToMany(targetEntity: ProductCategoryImages::class, mappedBy: 'mobileImage')]
+    private Collection $productCategoryImages;
+
     public function __construct()
     {
         parent::__construct();
         $this->uuid = strtoupper(uniqid('IMG_'));
+        $this->productCategoryImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +152,36 @@ class Images extends BaseFullRecord
     public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductCategoryImages>
+     */
+    public function getProductCategoryImages(): Collection
+    {
+        return $this->productCategoryImages;
+    }
+
+    public function addProductCategoryImage(ProductCategoryImages $productCategoryImage): static
+    {
+        if (!$this->productCategoryImages->contains($productCategoryImage)) {
+            $this->productCategoryImages->add($productCategoryImage);
+            $productCategoryImage->setMobileImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductCategoryImage(ProductCategoryImages $productCategoryImage): static
+    {
+        if ($this->productCategoryImages->removeElement($productCategoryImage)) {
+            // set the owning side to null (unless already changed)
+            if ($productCategoryImage->getMobileImage() === $this) {
+                $productCategoryImage->setMobileImage(null);
+            }
+        }
 
         return $this;
     }

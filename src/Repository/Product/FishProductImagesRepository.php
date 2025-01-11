@@ -2,22 +2,22 @@
 
 namespace App\Repository\Product;
 
-use App\Entity\Product\FishProductCategoryImages;
+use App\Entity\Product\FishProductImages;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<FishProductCategoryImages>
+ * @extends ServiceEntityRepository<FishProductImages>
  */
-class FishProductCategoryImagesRepository extends ServiceEntityRepository
+class FishProductImagesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FishProductCategoryImages::class);
+        parent::__construct($registry, FishProductImages::class);
     }
 
     //    /**
-    //     * @return FishProductCategoryImages[] Returns an array of FishProductCategoryImages objects
+    //     * @return FishProductImages[] Returns an array of FishProductImages objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class FishProductCategoryImagesRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?FishProductCategoryImages
+    //    public function findOneBySomeField($value): ?FishProductImages
     //    {
     //        return $this->createQueryBuilder('f')
     //            ->andWhere('f.exampleField = :val')

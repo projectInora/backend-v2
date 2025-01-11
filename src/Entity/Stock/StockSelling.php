@@ -3,6 +3,7 @@
 namespace App\Entity\Stock;
 
 use App\Entity\Base\BaseFullRecord;
+use App\Entity\Meta\Currency;
 use App\Entity\Meta\SellingType;
 use App\Repository\Stock\StockSellingRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,6 +23,9 @@ class StockSelling extends BaseFullRecord
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?SellingType $sellingType = null;
+
+    #[ORM\ManyToOne]
+    private ?Currency $currencyType = null;
 
     #[ORM\Column]
     private ?float $totalStockQuantity = null;
@@ -116,6 +120,18 @@ class StockSelling extends BaseFullRecord
     public function setStepSize(?float $stepSize): static
     {
         $this->stepSize = $stepSize;
+
+        return $this;
+    }
+
+    public function getCurrencyType(): ?Currency
+    {
+        return $this->currencyType;
+    }
+
+    public function setCurrencyType(?Currency $currencyType): static
+    {
+        $this->currencyType = $currencyType;
 
         return $this;
     }

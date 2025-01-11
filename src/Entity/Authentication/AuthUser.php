@@ -3,6 +3,7 @@
 namespace App\Entity\Authentication;
 
 use App\Entity\Base\BaseFullRecord;
+use App\Entity\Bid\BiddingStockBids;
 use App\Entity\Image\Images;
 use App\Entity\User\UserOTPRequest;
 use App\Repository\Authentication\AuthUserRepository;
@@ -66,11 +67,18 @@ class AuthUser extends BaseFullRecord implements UserInterface, PasswordAuthenti
     #[ORM\OneToMany(targetEntity: AuthUserAuthRoles::class, mappedBy: 'authUser')]
     private Collection $authUserAuthRoles;
 
+    /**
+     * @var Collection<int, BiddingStockBids>
+     */
+    #[ORM\OneToMany(targetEntity: BiddingStockBids::class, mappedBy: 'bidBy')]
+    private Collection $biddingStockBids;
+
     public function __construct()
     {
         $this->uuid = strtoupper(uniqid("US_"));
         parent::__construct();
         $this->authUserAuthRoles = new ArrayCollection();
+        $this->biddingStockBids = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,6 +294,36 @@ class AuthUser extends BaseFullRecord implements UserInterface, PasswordAuthenti
             // set the owning side to null (unless already changed)
             if ($authUserAuthRole->getAuthUser() === $this) {
                 $authUserAuthRole->setAuthUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BiddingStockBids>
+     */
+    public function getBiddingStockBids(): Collection
+    {
+        return $this->biddingStockBids;
+    }
+
+    public function addBiddingStockBid(BiddingStockBids $biddingStockBid): static
+    {
+        if (!$this->biddingStockBids->contains($biddingStockBid)) {
+            $this->biddingStockBids->add($biddingStockBid);
+            $biddingStockBid->setBidBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBiddingStockBid(BiddingStockBids $biddingStockBid): static
+    {
+        if ($this->biddingStockBids->removeElement($biddingStockBid)) {
+            // set the owning side to null (unless already changed)
+            if ($biddingStockBid->getBidBy() === $this) {
+                $biddingStockBid->setBidBy(null);
             }
         }
 

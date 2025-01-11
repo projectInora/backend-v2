@@ -28,10 +28,6 @@ class StockQualityCheck extends BaseFullRecord
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?AuthUser $performedBy = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
     private ?AuthUser $verifiedBy = null;
 
     #[ORM\Column]
@@ -92,18 +88,6 @@ class StockQualityCheck extends BaseFullRecord
     public function setCheckVersion(int $checkVersion): static
     {
         $this->checkVersion = $checkVersion;
-
-        return $this;
-    }
-
-    public function getPerformedBy(): ?AuthUser
-    {
-        return $this->performedBy;
-    }
-
-    public function setPerformedBy(?AuthUser $performedBy): static
-    {
-        $this->performedBy = $performedBy;
 
         return $this;
     }

@@ -34,9 +34,6 @@ class Stock extends BaseFullRecord
     private ?string $uuid = null;
 
     #[ORM\ManyToOne]
-    private ?FishType $fishType = null;
-
-    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?FishProduct $fishProduct = null;
 
@@ -57,9 +54,6 @@ class Stock extends BaseFullRecord
 
     #[ORM\Column]
     private ?float $stockTotalPrice = null;
-
-    #[ORM\ManyToOne]
-    private ?Currency $currencyType = null;
 
     #[ORM\ManyToOne]
     private ?PostHarvestTechnology $postHarvestingTechnology = null;
@@ -139,18 +133,6 @@ class Stock extends BaseFullRecord
     public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
-
-        return $this;
-    }
-
-    public function getFishType(): ?FishType
-    {
-        return $this->fishType;
-    }
-
-    public function setFishType(?FishType $fishType): static
-    {
-        $this->fishType = $fishType;
 
         return $this;
     }
@@ -235,18 +217,6 @@ class Stock extends BaseFullRecord
     public function setStockTotalPrice(float $stockTotalPrice): static
     {
         $this->stockTotalPrice = $stockTotalPrice;
-
-        return $this;
-    }
-
-    public function getCurrencyType(): ?Currency
-    {
-        return $this->currencyType;
-    }
-
-    public function setCurrencyType(?Currency $currencyType): static
-    {
-        $this->currencyType = $currencyType;
 
         return $this;
     }

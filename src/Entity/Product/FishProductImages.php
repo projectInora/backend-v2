@@ -4,11 +4,11 @@ namespace App\Entity\Product;
 
 use App\Entity\Base\BaseFullRecord;
 use App\Entity\Image\Images;
-use App\Repository\Product\FishProductCategoryImagesRepository;
+use App\Repository\Product\FishProductImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FishProductCategoryImagesRepository::class)]
-class FishProductCategoryImages extends BaseFullRecord
+#[ORM\Entity(repositoryClass: FishProductImagesRepository::class)]
+class FishProductImages extends BaseFullRecord
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,7 +17,7 @@ class FishProductCategoryImages extends BaseFullRecord
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?FishProductCategory $category = null;
+    private ?FishProduct $fishProduct = null;
 
     #[ORM\ManyToOne]
     private ?Images $image = null;
@@ -31,7 +31,7 @@ class FishProductCategoryImages extends BaseFullRecord
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $validFrom = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?\DateTimeImmutable $validTill = null;
 
     public function __construct()
@@ -44,14 +44,14 @@ class FishProductCategoryImages extends BaseFullRecord
         return $this->id;
     }
 
-    public function getCategory(): ?FishProductCategory
+    public function getFishProduct(): ?FishProduct
     {
-        return $this->category;
+        return $this->fishProduct;
     }
 
-    public function setCategory(?FishProductCategory $category): static
+    public function setFishProduct(?FishProduct $fishProduct): static
     {
-        $this->category = $category;
+        $this->fishProduct = $fishProduct;
 
         return $this;
     }
@@ -109,7 +109,7 @@ class FishProductCategoryImages extends BaseFullRecord
         return $this->validTill;
     }
 
-    public function setValidTill(?\DateTimeImmutable $validTill): static
+    public function setValidTill(\DateTimeImmutable $validTill): static
     {
         $this->validTill = $validTill;
 

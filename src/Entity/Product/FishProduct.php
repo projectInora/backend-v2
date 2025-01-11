@@ -20,10 +20,6 @@ class FishProduct extends BaseFullRecord
     #[ORM\ManyToOne]
     private ?FishDataSet $fishDataSet = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?FishProductCategory $category = null;
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -61,18 +57,6 @@ class FishProduct extends BaseFullRecord
     public function setFishDataSet(?FishDataSet $fishDataSet): static
     {
         $this->fishDataSet = $fishDataSet;
-
-        return $this;
-    }
-
-    public function getCategory(): ?FishProductCategory
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?FishProductCategory $category): static
-    {
-        $this->category = $category;
 
         return $this;
     }
