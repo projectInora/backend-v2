@@ -62,6 +62,8 @@ trait ServiceErrorCodes
     private string $WAE_FC014 = "Existing milieu found!";
     private string $WAE_FC015 = "Existing depth range found!";
     private string $WAE_FC016 = "Existing distribution range found!";
+    private string $WAE_FC017 = "Existing fish dataset found!";
+    private string $WAE_FC018 = "Classification species not found!";
 
     public function getErrorMessage(string $errorCode): array
     {
