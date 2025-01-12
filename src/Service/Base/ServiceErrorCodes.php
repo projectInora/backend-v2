@@ -58,6 +58,10 @@ trait ServiceErrorCodes
     private string $WAE_FC010 = "Existing genus found!";
     private string $WAE_FC011 = "Genus not found!";
     private string $WAE_FC012 = "Existing species found!";
+    private string $WAE_FC013 = "Existing climate zone found!";
+    private string $WAE_FC014 = "Existing milieu found!";
+    private string $WAE_FC015 = "Existing depth range found!";
+    private string $WAE_FC016 = "Existing distribution range found!";
 
     public function getErrorMessage(string $errorCode): array
     {

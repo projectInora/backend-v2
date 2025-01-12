@@ -2,12 +2,13 @@
 
 namespace App\Entity\FishDataSet\Environment;
 
+use App\Entity\Base\BaseRecord;
 use App\Entity\Base\BaseStatus;
 use App\Repository\FishDataSet\Environment\FishEnvironmentDepthRangeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FishEnvironmentDepthRangeRepository::class)]
-class FishEnvironmentDepthRange extends BaseStatus
+class FishEnvironmentDepthRange extends BaseRecord
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

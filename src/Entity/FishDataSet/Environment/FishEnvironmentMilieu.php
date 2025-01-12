@@ -2,12 +2,13 @@
 
 namespace App\Entity\FishDataSet\Environment;
 
+use App\Entity\Base\BaseRecord;
 use App\Entity\Base\BaseStatus;
 use App\Repository\FishDataSet\Environment\FishEnvironmentMilieuRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FishEnvironmentMilieuRepository::class)]
-class FishEnvironmentMilieu extends BaseStatus
+class FishEnvironmentMilieu extends BaseRecord
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -4,7 +4,6 @@ namespace App\Controller\InternalAPI\V1\WebAdmin\FishDataSet;
 
 use App\Controller\InternalAPI\V1\WebAdmin\BaseWebAdminController;
 use App\DataModals\InternalAPI\V1\RequestModal\WebAdmin\FishDataSet\NewMultiRecordModal;
-use App\Service\InternalAPI\CMS\Banner\IBannerGroupService;
 use App\Service\InternalAPI\WebAdmin\FishDataSet\IFishClassificationService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

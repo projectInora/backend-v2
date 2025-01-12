@@ -167,14 +167,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCKingdomModal::class);
-                $resp[$singleModal->code] = $this->addNewKingdom($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewKingdom($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }
@@ -224,14 +224,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCPhylumModal::class);
-                $resp[$singleModal->code] = $this->addNewPhylum($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewPhylum($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }
@@ -286,14 +286,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCClassModal::class);
-                $resp[$singleModal->code] = $this->addNewPhylumClass($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewPhylumClass($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }
@@ -348,14 +348,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCOrderModal::class);
-                $resp[$singleModal->code] = $this->addNewClassOrder($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewClassOrder($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }
@@ -410,14 +410,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCFamilyModal::class);
-                $resp[$singleModal->code] = $this->addNewFamily($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewFamily($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }
@@ -472,14 +472,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCGenusModal::class);
-                $resp[$singleModal->code] = $this->addNewGenus($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewGenus($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }
@@ -534,14 +534,14 @@ class FishClassificationService extends BaseInternalAPIService implements IFishC
             }
 
             $uniqueData = array_values(array_reduce($multiRecordModal->modals ?? [], function ($carry, $item) {
-                $carry[$item['code']] = $item; // Use 'code' as the key to ensure uniqueness
+                $carry[$item['code'] ?? $item['name']] = $item; // Use 'code' as the key to ensure uniqueness
                 return $carry;
             }, []));
 
             $resp = [];
             foreach ($uniqueData as $modal) {
                 $singleModal = $this->serializer->denormalize($modal,NewCSpeciesModal::class);
-                $resp[$singleModal->code] = $this->addNewSpecies($user, $singleModal);
+                $resp[$singleModal->code ?? $singleModal->name] = $this->addNewSpecies($user, $singleModal);
             }
             return ['error'=>null, 'result' => $resp, 'status' => true, 'statusCode' => Response::HTTP_OK];
         }

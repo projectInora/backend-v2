@@ -2,12 +2,13 @@
 
 namespace App\Entity\FishDataSet\Environment;
 
+use App\Entity\Base\BaseRecord;
 use App\Entity\Base\BaseStatus;
 use App\Repository\FishDataSet\Environment\FishEnvironmentClimateZoneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FishEnvironmentClimateZoneRepository::class)]
-class FishEnvironmentClimateZone extends BaseStatus
+class FishEnvironmentClimateZone extends BaseRecord
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
