@@ -10,7 +10,6 @@ use App\Entity\CMS\Banner\BannerGroup;
 use App\Entity\CMS\Banner\BannerGroupType;
 use App\Entity\CMS\Base\ButtonContent;
 use App\Entity\Image\Images;
-use App\Entity\Meta\Image;
 use App\Service\Base\IBaseImageService;
 use App\Service\InternalAPI\CMS\BaseCMSService;
 use Doctrine\ORM\EntityManagerInterface;

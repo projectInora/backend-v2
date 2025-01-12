@@ -9,6 +9,7 @@ trait ServiceErrorCodes
     private string $CWE00000 = "Invalid Request Data Format!";
     private string $BEI00001 = "Invalid image file!";
     private string $BEI00002 = "Invalid Request Data Format!";
+    private string $BEI00003 = "Existing a record found!";
 
     private string $CWE_ER001 = "Entity type not found!";
     private string $CWE_ER002 = "Entity not found!";
@@ -43,6 +44,20 @@ trait ServiceErrorCodes
     private string $CWE_ER031 = "Ticket pricing date invalid with ticket date!";
     private string $CWE_ER032 = "Ticket pricing date invalid with ticket date!";
     private string $CWE_ER033 = "User ticket booking not found!";
+
+
+    private string $WAE_FC001 = "Kingdom not found!";
+    private string $WAE_FC002 = "Existing phylum found!";
+    private string $WAE_FC003 = "Phylum not found!";
+    private string $WAE_FC004 = "Existing phylum class found!";
+    private string $WAE_FC005 = "Phylum class not found!";
+    private string $WAE_FC006 = "Existing class order found!";
+    private string $WAE_FC007 = "Class order not found!";
+    private string $WAE_FC008 = "Existing family found!";
+    private string $WAE_FC009 = "Family not found!";
+    private string $WAE_FC010 = "Existing genus found!";
+    private string $WAE_FC011 = "Genus not found!";
+    private string $WAE_FC012 = "Existing species found!";
 
     public function getErrorMessage(string $errorCode): array
     {

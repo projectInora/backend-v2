@@ -2,6 +2,7 @@
 
 namespace App\Entity\FishDataSet\Classification;
 
+use App\Entity\Base\BaseRecord;
 use App\Entity\Base\BaseStatus;
 use App\Repository\FishDataSet\Classification\FishClassificationPhylumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FishClassificationPhylumRepository::class)]
-class FishClassificationPhylum extends BaseStatus
+class FishClassificationPhylum extends BaseRecord
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

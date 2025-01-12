@@ -2,12 +2,13 @@
 
 namespace App\Entity\FishDataSet\Classification;
 
+use App\Entity\Base\BaseRecord;
 use App\Entity\Base\BaseStatus;
 use App\Repository\FishDataSet\Classification\FishClassificationOrderRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FishClassificationOrderRepository::class)]
-class FishClassificationOrder extends BaseStatus
+class FishClassificationOrder extends BaseRecord
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
